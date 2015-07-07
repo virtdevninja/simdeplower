@@ -1,14 +1,20 @@
-simdeplower is a python tool that you can use to deploy vCenter Server Apps and have them 
-magically configured in simulator mode.
+simdeplower is a python tool that you can use to deploy vCenter Server Appliances and have them
+magically configured in simulator mode (or how ever you see fit using a shell script).
 
 Getting Started
 ===============
-Check back soon for more documentation
+simdeplower has been tested extensively on OSX, but should work anywhere that subprocess32 and paramiko will run.
+simdeplower requires either VMWare Workstation or Fusion to be successful. From those products simdeplower will use
+vmrun and ovftool. simdeplower uses ovftool to deploy (extract) an ova onto the filesystem then uses vmrun to launch
+the extracted VMX. Once the VM is up and running simdeplower uses paramiko to ssh in using the default username and
+password of "root" and "vmware" and executes a shell script you provide, or a bundled script that will configure the
+appliance as a simulator. This only works on VCSA 5.x products because simulator no longer works on 6.x
 
 
 Installing
 ==========
-Check back soon for more documentation
+To install it is best to create a new virtualenv and install using pip
+For detailed instructions see the `wiki <https://github.com/virtdevninja/simdeplower/wiki>`_ on GitHub
 
 
 Contributing
@@ -26,8 +32,14 @@ Python Support
 Reporting Issues
 ================
 To report a problem with simdeplower or to make a feature request open an 
-`issue <https://github.com/virtdevninja/simdeplower/issues>`_ on Github.
+`issue <https://github.com/virtdevninja/simdeplower/issues>`_ on GitHub.
+
+
+Usage Examples
+==============
+See the `wiki <https://github.com/virtdevninja/simdeplower/wiki>`_ on GitHub
 
 
 Releases
 ========
+* simdeplower 0.1

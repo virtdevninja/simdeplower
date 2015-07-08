@@ -17,22 +17,29 @@ from os.path import expanduser, isfile
 
 import paramiko
 
+from simdeplower import simconfigs
+
 LOG = logging.getLogger("simdeplower")
 
-def provision_simulator(script_path=None, user=None, passwd=None, host=None):
+def provision_simulator(script_path=None, user=None,
+                        passwd=None, host=None):
+    if host is None:
+        raise ValueError("No host provided to connect to.")
     if user is None:
         user = "root"
     if passwd is None:
         passwd = "vmware"
-    if script_path is None:
-        raise ValueError("Unable to provision simulator with out script.")
-    script_path = expanduser(script_path)
-    if not isfile(script_path):
-        raise ValueError("Invalid script path provided.")
-    if host is None:
-        raise ValueError("No host provided to connect to.")
-    with open(script_path) as script:
-        script_data = script.read()
+    if script_path is not None:
+        script_path = expanduser(script_path)
+        if not isfile(script_path):
+            raise ValueError("Invalid script path provided.")
+        LOG.debug("Reading script into memory.")
+        with open(script_path) as script:
+            script_data = script.read()
+    else:
+        LOG.debug("No script provided. Using default")
+        script_data = simconfigs.default_config()
+
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(
         paramiko.AutoAddPolicy()

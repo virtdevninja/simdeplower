@@ -100,7 +100,7 @@ def _setup_parser():
     parser.add_argument(
         '-s',
         '--script-path',
-        required=True,
+        required=False,
         action='store',
         help="Full path to the script used to configure the VCSA simulator."
     )
@@ -153,6 +153,9 @@ def execute():
         log.debug(item)
 
     print "You can now log into your vcsa at: {0}".format(vm_ip)
+    if provided_args.script_path is None:
+        print "vSphere user: administrator@vsphere.local"
+        print "vSphere password: password"
 
 if __name__ == "__main__":
     execute()

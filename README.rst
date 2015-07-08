@@ -43,3 +43,8 @@ See the `wiki <https://github.com/virtdevninja/simdeplower/wiki>`_ on GitHub
 Releases
 ========
 * simdeplower 0.1
+
+
+.. image:: https://badges.gitter.im/Join%20Chat.svg
+   :alt: Join the chat at https://gitter.im/virtdevninja/simdeplower
+   :target: https://gitter.im/virtdevninja/simdeplower?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
